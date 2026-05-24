@@ -1,0 +1,462 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#111;overflow:hidden}
+#app{display:flex;flex-direction:column;height:660px;font-family:'Barlow Condensed',sans-serif;background:#111;color:#eee;overflow:hidden}
+#topbar{background:#1a1a1a;border-bottom:1px solid #222;padding:5px 12px;display:flex;align-items:center;gap:6px;flex-shrink:0;height:40px}
+.logo{font-size:17px;font-weight:700;letter-spacing:2px}.logo b{color:#e00}
+.sp{flex:1}
+.tb{background:#1e1e1e;border:1px solid #2a2a2a;color:#888;padding:3px 9px;font-size:11px;cursor:pointer;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:1px;transition:all .1s;white-space:nowrap}
+.tb:hover{background:#2a2a2a;border-color:#555;color:#ddd}
+.tb.green{border-color:#240;color:#360}
+.tb.green:hover{background:#1a2e0a;border-color:#4a0;color:#8e4}
+.tb.blue{border-color:#224;color:#336}
+.tb.blue:hover{background:#0a1a2e;border-color:#48f;color:#8af}
+.tb.red2:hover{background:#300;border-color:#e00;color:#e00}
+#body{display:flex;flex:1;overflow:hidden}
+#lp{width:212px;background:#141414;border-right:1px solid #1e1e1e;display:flex;flex-direction:column;overflow:hidden;flex-shrink:0}
+#lp-tabs{display:flex;border-bottom:1px solid #1e1e1e;flex-shrink:0}
+.ltab{flex:1;padding:6px 2px;font-size:10px;font-weight:600;letter-spacing:1px;color:#333;text-align:center;cursor:pointer;text-transform:uppercase;border-right:1px solid #1a1a1a;transition:all .1s}
+.ltab:last-child{border-right:none}
+.ltab:hover{color:#888}
+.ltab.on{color:#e00;border-bottom:2px solid #e00;background:#111}
+#editor{flex:1;overflow-y:auto;padding:8px}
+.sh{font-size:10px;letter-spacing:2px;color:#e00;text-transform:uppercase;font-weight:600;margin:10px 0 7px;padding-bottom:3px;border-bottom:1px solid #1e1e1e}
+.sh:first-child{margin-top:0}
+.row{display:flex;align-items:center;gap:5px;margin-bottom:6px}
+.lbl{font-size:11px;color:#555;flex:1;letter-spacing:.5px}
+.inp{width:72px;background:#0e0e0e;border:1px solid #222;color:#ddd;padding:3px 7px;font-size:12px;border-radius:3px;font-family:'Barlow Condensed',sans-serif;text-align:right;transition:border-color .1s}
+.inp:focus{outline:none;border-color:#e00;color:#fff}
+.inp[type=text]{width:100%;text-align:left}
+.unit{font-size:10px;color:#2a2a2a;width:16px;flex-shrink:0}
+.crow{display:flex;align-items:center;gap:5px;margin-bottom:6px}
+.csw{width:28px;height:20px;border:1px solid #333;border-radius:3px;cursor:pointer;padding:1px}
+#add-btn{width:100%;margin-top:10px;background:#e00;border:none;color:#fff;padding:9px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;border-radius:3px;cursor:pointer}
+#add-btn:hover{opacity:.85}
+#mp{width:198px;background:#0e0e0e;border-right:1px solid #1e1e1e;display:flex;flex-direction:column;overflow:hidden;flex-shrink:0}
+#mp-top{padding:7px 9px;font-size:10px;letter-spacing:2px;color:#333;border-bottom:1px solid #1e1e1e;text-transform:uppercase;font-weight:600;flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+#part-list{flex:0 0 auto;overflow-y:auto;max-height:210px;padding:4px}
+.prow{border:1.5px solid #1a1a1a;border-radius:4px;margin-bottom:4px;cursor:pointer;transition:border-color .12s}
+.prow:hover{border-color:#333}
+.prow.sel{border-color:#e00;background:#1a0000}
+.prow-hd{display:flex;align-items:center;gap:6px;padding:7px 8px}
+.prow-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.prow-name{flex:1;font-size:11px;color:#777;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prow.sel .prow-name{color:#ff4444}
+.prow-type{font-size:9px;color:#2a2a2a;letter-spacing:1px;text-transform:uppercase}
+.prow-del{color:#330;font-size:13px;cursor:pointer;padding:0 3px;flex-shrink:0}.prow-del:hover{color:#e00}
+#edit-panel{flex:1;overflow-y:auto;border-top:1px solid #1e1e1e;padding:10px}
+#edit-none{font-size:11px;color:#1e1e1e;text-align:center;padding:20px 0;letter-spacing:1px;line-height:2}
+#edit-form{display:none}
+.edit-hd{font-size:10px;letter-spacing:2px;color:#e00;text-transform:uppercase;font-weight:600;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.edit-badge{font-size:9px;background:#1e1e1e;color:#555;padding:2px 6px;border-radius:10px}
+.edit-sec{font-size:9px;letter-spacing:2px;color:#2e2e2e;text-transform:uppercase;margin:8px 0 5px;font-weight:600}
+.edit-row{display:flex;align-items:center;gap:5px;margin-bottom:5px}
+.edit-lbl{font-size:11px;color:#444;flex:1}
+.edit-inp{width:66px;background:#0e0e0e;border:1px solid #1e1e1e;color:#ccc;padding:2px 6px;font-size:12px;border-radius:3px;font-family:'Barlow Condensed',sans-serif;text-align:right;transition:border-color .1s}
+.edit-inp:focus{outline:none;border-color:#e00;color:#fff}
+.edit-inp[type=text]{width:100%;text-align:left}
+.edit-unit{font-size:9px;color:#1e1e1e;width:16px;flex-shrink:0}
+.edit-crow{display:flex;align-items:center;gap:5px;margin-bottom:5px}
+.edit-csw{width:26px;height:18px;border:1px solid #333;border-radius:3px;cursor:pointer;padding:1px}
+#v3{flex:1;position:relative;overflow:hidden}
+#c3{width:100%;height:100%;display:block;cursor:grab}
+#empty3{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+#empty3 p{font-size:12px;color:#1a1a1a;text-align:center;line-height:2.2;letter-spacing:1px}
+#cbar{position:absolute;bottom:0;left:0;right:0;background:rgba(8,8,8,.93);padding:5px 10px;display:flex;align-items:center;gap:7px;border-top:1px solid #1e1e1e}
+.cl{font-size:10px;color:#333;white-space:nowrap;flex-shrink:0}
+.sl{flex:1;min-width:28px;height:3px;accent-color:#e00;cursor:pointer}
+.cv{font-size:10px;color:#555;min-width:32px;text-align:right;font-weight:600;flex-shrink:0}
+/* toast */
+#toast{position:absolute;top:12px;left:50%;transform:translateX(-50%);background:rgba(20,20,20,.95);border:1px solid #333;border-radius:4px;padding:8px 18px;font-size:11px;color:#aaa;letter-spacing:1px;pointer-events:none;opacity:0;transition:opacity .3s;white-space:nowrap}
+#toast.show{opacity:1}
+/* load input hidden */
+#json-load{display:none}
+</style>
+
+<div id="app">
+<div id="topbar">
+  <div class="logo">TRAILER<b>CAD</b></div>
+  <div class="sp"></div>
+  <button class="tb green" onclick="savePNG()">💾 PNG保存</button>
+  <button class="tb blue" onclick="saveJSON()">📦 データ保存</button>
+  <button class="tb blue" onclick="document.getElementById('json-load').click()">📂 データ読込</button>
+  <input type="file" id="json-load" accept=".json" onchange="loadJSON(this)">
+  <button class="tb" onclick="resetCam()">RESET</button>
+  <button class="tb red2" onclick="clearAll()">CLEAR</button>
+</div>
+<div id="body">
+  <div id="lp">
+    <div id="lp-tabs">
+      <div class="ltab on" id="tab-arch" onclick="switchType('arch')">アーチ</div>
+      <div class="ltab" id="tab-box" onclick="switchType('box')">ボックス</div>
+      <div class="ltab" id="tab-cyl" onclick="switchType('cyl')">円柱</div>
+    </div>
+    <div id="editor">
+      <div id="ed-arch">
+        <div class="sh">アーチ材</div>
+        <div class="row"><span class="lbl">名称</span><input class="inp" type="text" id="a-N" value="アーチ材"></div>
+        <div class="row"><span class="lbl">全幅</span><input class="inp" id="a-W" value="1010" type="number"><span class="unit">mm</span></div>
+        <div class="row"><span class="lbl">高さ</span><input class="inp" id="a-H" value="505" type="number"><span class="unit">mm</span></div>
+        <div class="row"><span class="lbl">半径</span><input class="inp" id="a-R" value="505" type="number"><span class="unit">mm</span></div>
+        <div class="row"><span class="lbl">奥行</span><input class="inp" id="a-D" value="2" type="number"><span class="unit">mm</span></div>
+        <div class="row"><span class="lbl">板厚</span><input class="inp" id="a-T" value="40" type="number"><span class="unit">mm</span></div>
+        <div class="crow"><span class="lbl">カラー</span><input type="color" class="csw" id="a-C" value="#556677"></div>
+      </div>
+      <div id="ed-box" style="display:none">
+        <div class="sh">ボックス材</div>
+        <div class="row"><span class="lbl">名称</span><input class="inp" type="text" id="b-N" value="フランジ材"></div>
+        <div class="row"><span class="lbl">幅</span><input class="inp" id="b-W" value="40" type="number"><span class="unit">mm</span></div>
+        <div class="row"><span class="lbl">高さ</span><input class="inp" id="b-H" value="75" type="number"><span class="unit">mm</span></div>
+        <div class="row"><span class="lbl">奥行</span><input class="inp" id="b-D" value="2" type="number"><span class="unit">mm</span></div>
+        <div class="crow"><span class="lbl">カラー</span><input type="color" class="csw" id="b-C" value="#445566"></div>
+      </div>
+      <div id="ed-cyl" style="display:none">
+        <div class="sh">円柱材</div>
+        <div class="row"><span class="lbl">名称</span><input class="inp" type="text" id="c-N" value="円柱材"></div>
+        <div class="row"><span class="lbl">半径</span><input class="inp" id="c-R" value="50" type="number"><span class="unit">mm</span></div>
+        <div class="row"><span class="lbl">高さ</span><input class="inp" id="c-H" value="100" type="number"><span class="unit">mm</span></div>
+        <div class="row"><span class="lbl">奥行</span><input class="inp" id="c-D" value="50" type="number"><span class="unit">mm</span></div>
+        <div class="crow"><span class="lbl">カラー</span><input type="color" class="csw" id="c-C" value="#667755"></div>
+      </div>
+      <button id="add-btn" onclick="addPart()">＋ 部材を追加</button>
+    </div>
+  </div>
+
+  <div id="mp">
+    <div id="mp-top"><span>部材リスト</span><span id="part-count" style="color:#222">0個</span></div>
+    <div id="part-list"></div>
+    <div id="edit-panel">
+      <div id="edit-none">部材を選択すると<br>ここで編集できます</div>
+      <div id="edit-form">
+        <div class="edit-hd">編集中<span class="edit-badge" id="edit-badge">—</span></div>
+        <div class="edit-sec">基本</div>
+        <div class="edit-row"><span class="edit-lbl">名称</span><input class="edit-inp" type="text" id="e-N" oninput="liveUpdate()"></div>
+        <div class="edit-crow"><span class="edit-lbl">カラー</span><input type="color" class="edit-csw" id="e-C" oninput="liveUpdate()"></div>
+        <div id="ef-arch">
+          <div class="edit-sec">アーチ寸法</div>
+          <div class="edit-row"><span class="edit-lbl">全幅</span><input class="edit-inp" id="e-W" type="number" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+          <div class="edit-row"><span class="edit-lbl">高さ</span><input class="edit-inp" id="e-H" type="number" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+          <div class="edit-row"><span class="edit-lbl">半径</span><input class="edit-inp" id="e-R" type="number" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+          <div class="edit-row"><span class="edit-lbl">奥行</span><input class="edit-inp" id="e-D" type="number" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+          <div class="edit-row"><span class="edit-lbl">板厚</span><input class="edit-inp" id="e-T" type="number" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+        </div>
+        <div id="ef-box" style="display:none">
+          <div class="edit-sec">ボックス寸法</div>
+          <div class="edit-row"><span class="edit-lbl">幅</span><input class="edit-inp" id="e-BW" type="number" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+          <div class="edit-row"><span class="edit-lbl">高さ</span><input class="edit-inp" id="e-BH" type="number" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+          <div class="edit-row"><span class="edit-lbl">奥行</span><input class="edit-inp" id="e-BD" type="number" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+        </div>
+        <div id="ef-cyl" style="display:none">
+          <div class="edit-sec">円柱寸法</div>
+          <div class="edit-row"><span class="edit-lbl">半径</span><input class="edit-inp" id="e-CR" type="number" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+          <div class="edit-row"><span class="edit-lbl">高さ</span><input class="edit-inp" id="e-CH" type="number" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+          <div class="edit-row"><span class="edit-lbl">奥行</span><input class="edit-inp" id="e-CD" type="number" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+        </div>
+        <div class="edit-sec">位置 (mm)</div>
+        <div class="edit-row"><span class="edit-lbl">X（左右）</span><input class="edit-inp" id="e-X" type="number" value="0" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+        <div class="edit-row"><span class="edit-lbl">Y（上下）</span><input class="edit-inp" id="e-Y" type="number" value="0" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+        <div class="edit-row"><span class="edit-lbl">Z（前後）</span><input class="edit-inp" id="e-Z" type="number" value="0" oninput="liveUpdate()"><span class="edit-unit">mm</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="v3">
+    <canvas id="c3"></canvas>
+    <div id="empty3"><p>← 部材を追加して<br>合体3Dを作ろう</p></div>
+    <div id="toast">保存しました</div>
+    <div id="cbar">
+      <span class="cl">回転X</span><input type="range" class="sl" id="rx" min="-180" max="180" value="20" oninput="render();rxv.textContent=Math.round(this.value)+'°'"><span class="cv" id="rxv">20°</span>
+      <span class="cl">回転Y</span><input type="range" class="sl" id="ry" min="-180" max="180" value="-38" oninput="render();ryv.textContent=Math.round(this.value)+'°'"><span class="cv" id="ryv">-38°</span>
+      <span class="cl">ズーム</span><input type="range" class="sl" id="zoom" min="10" max="1000" value="120" step="10" oninput="render();zv.textContent=Math.round(this.value)+'%'"><span class="cv" id="zv">120%</span>
+      <button class="tb" onclick="resetCam()" style="padding:2px 6px;font-size:10px;flex-shrink:0">RST</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const S=4.0/1000;
+const DOTS=['#e00','#f90','#4af','#4f8','#a4f','#fa4','#4fa','#f4a'];
+let parts=[],selId=null,uid=0,curType='arch';
+let drag3=false,lx3=0,ly3=0;
+
+// ── タブ ──────────────────────────────────────────────────────
+function switchType(t){
+  curType=t;
+  ['arch','box','cyl'].forEach(k=>{
+    document.getElementById('ed-'+k).style.display=k===t?'block':'none';
+    document.getElementById('tab-'+k).className='ltab'+(k===t?' on':'');
+  });
+}
+
+// ── 部材追加 ──────────────────────────────────────────────────
+function addPart(){
+  const p={id:++uid,type:curType,ox:0,oy:0,oz:0};
+  if(curType==='arch'){
+    p.name=document.getElementById('a-N').value||'アーチ材';p.color=document.getElementById('a-C').value;
+    p.W=+document.getElementById('a-W').value;p.H=+document.getElementById('a-H').value;
+    p.R=+document.getElementById('a-R').value;p.D=+document.getElementById('a-D').value;p.T=+document.getElementById('a-T').value;
+  }else if(curType==='box'){
+    p.name=document.getElementById('b-N').value||'ボックス材';p.color=document.getElementById('b-C').value;
+    p.W=+document.getElementById('b-W').value;p.H=+document.getElementById('b-H').value;p.D=+document.getElementById('b-D').value;
+  }else{
+    p.name=document.getElementById('c-N').value||'円柱材';p.color=document.getElementById('c-C').value;
+    p.R=+document.getElementById('c-R').value;p.H=+document.getElementById('c-H').value;p.D=+document.getElementById('c-D').value;
+  }
+  parts.push(p);selId=p.id;buildList();openEdit(p);render();
+}
+
+function delPart(id){parts=parts.filter(p=>p.id!==id);if(selId===id){selId=null;closeEdit();}buildList();render();}
+function clearAll(){parts=[];selId=null;closeEdit();buildList();render();}
+
+// ── リスト ────────────────────────────────────────────────────
+function buildList(){
+  const list=document.getElementById('part-list');list.innerHTML='';
+  document.getElementById('part-count').textContent=parts.length+'個';
+  document.getElementById('empty3').style.display=parts.length?'none':'flex';
+  parts.forEach((p,i)=>{
+    const row=document.createElement('div');row.className='prow'+(p.id===selId?' sel':'');
+    row.innerHTML=`<div class="prow-hd"><div class="prow-dot" style="background:${p.id===selId?'#e00':DOTS[i%DOTS.length]}"></div><div class="prow-name">${p.name}</div><span class="prow-type">${{arch:'アーチ',box:'BOX',cyl:'円柱'}[p.type]}</span><span class="prow-del" onclick="event.stopPropagation();delPart(${p.id})">✕</span></div>`;
+    row.addEventListener('click',()=>{selId=p.id;buildList();openEdit(p);render();});
+    list.appendChild(row);
+  });
+}
+
+// ── 編集 ──────────────────────────────────────────────────────
+function openEdit(p){
+  document.getElementById('edit-none').style.display='none';
+  document.getElementById('edit-form').style.display='block';
+  document.getElementById('edit-badge').textContent={arch:'アーチ',box:'ボックス',cyl:'円柱'}[p.type];
+  document.getElementById('e-N').value=p.name;
+  document.getElementById('e-C').value=p.color||'#888888';
+  document.getElementById('e-X').value=p.ox||0;
+  document.getElementById('e-Y').value=p.oy||0;
+  document.getElementById('e-Z').value=p.oz||0;
+  ['arch','box','cyl'].forEach(k=>document.getElementById('ef-'+k).style.display='none');
+  if(p.type==='arch'){
+    document.getElementById('ef-arch').style.display='block';
+    document.getElementById('e-W').value=p.W;document.getElementById('e-H').value=p.H;
+    document.getElementById('e-R').value=p.R;document.getElementById('e-D').value=p.D;document.getElementById('e-T').value=p.T;
+  }else if(p.type==='box'){
+    document.getElementById('ef-box').style.display='block';
+    document.getElementById('e-BW').value=p.W;document.getElementById('e-BH').value=p.H;document.getElementById('e-BD').value=p.D;
+  }else{
+    document.getElementById('ef-cyl').style.display='block';
+    document.getElementById('e-CR').value=p.R;document.getElementById('e-CH').value=p.H;document.getElementById('e-CD').value=p.D;
+  }
+}
+function closeEdit(){document.getElementById('edit-none').style.display='block';document.getElementById('edit-form').style.display='none';}
+function liveUpdate(){
+  const p=parts.find(q=>q.id===selId);if(!p)return;
+  p.name=document.getElementById('e-N').value;p.color=document.getElementById('e-C').value;
+  p.ox=+document.getElementById('e-X').value||0;p.oy=+document.getElementById('e-Y').value||0;p.oz=+document.getElementById('e-Z').value||0;
+  if(p.type==='arch'){p.W=+document.getElementById('e-W').value||1;p.H=+document.getElementById('e-H').value||1;p.R=+document.getElementById('e-R').value||1;p.D=+document.getElementById('e-D').value||1;p.T=+document.getElementById('e-T').value||1;}
+  else if(p.type==='box'){p.W=+document.getElementById('e-BW').value||1;p.H=+document.getElementById('e-BH').value||1;p.D=+document.getElementById('e-BD').value||1;}
+  else{p.R=+document.getElementById('e-CR').value||1;p.H=+document.getElementById('e-CH').value||1;p.D=+document.getElementById('e-CD').value||1;}
+  buildList();render();
+}
+
+// ── 💾 PNG保存 ────────────────────────────────────────────────
+function savePNG(){
+  if(!parts.length){toast('部材がありません');return;}
+  // 高解像度キャンバスに描画
+  const offW=1920,offH=1080;
+  const off=document.createElement('canvas');off.width=offW;off.height=offH;
+  const octx=off.getContext('2d');
+  octx.fillStyle='#0d0d0d';octx.fillRect(0,0,offW,offH);
+
+  const RX=+document.getElementById('rx').value*Math.PI/180;
+  const RY=+document.getElementById('ry').value*Math.PI/180;
+  const sc=+document.getElementById('zoom').value/100;
+  const CX=offW/2,CY=offH/2;
+
+  function prj2(pt){
+    let[x,y,z]=pt;
+    const x1=x*Math.cos(RY)-z*Math.sin(RY),z1=x*Math.sin(RY)+z*Math.cos(RY);
+    const y2=y*Math.cos(RX)-z1*Math.sin(RX),z2=y*Math.sin(RX)+z1*Math.cos(RX);
+    const s=sc*120/(z2*.04+4);
+    return[CX+x1*s,CY-y2*s,z2];
+  }
+  let all=[];
+  parts.forEach(p=>all.push(...buildFaces(p)));
+  all.sort((a,b)=>b.pts.reduce((s,pt)=>s+prj2(pt)[2],0)/b.pts.length-a.pts.reduce((s,pt)=>s+prj2(pt)[2],0)/a.pts.length);
+  all.forEach(f=>{
+    octx.beginPath();const p0=prj2(f.pts[0]);octx.moveTo(p0[0],p0[1]);
+    f.pts.slice(1).forEach(pt=>{const p=prj2(pt);octx.lineTo(p[0],p[1]);});
+    octx.closePath();octx.fillStyle=dk(f.col,f.br,f.sel);octx.fill();
+    octx.strokeStyle='rgba(0,0,0,.25)';octx.lineWidth=.6;octx.stroke();
+  });
+  // ラベル
+  parts.forEach((p,i)=>{
+    const lp=prj2([p.ox*S,(p.oy+(p.H||p.R*2||50))*S*0.6+0.3,p.oz*S]);
+    octx.fillStyle=DOTS[i%DOTS.length];octx.font="bold 16px 'Arial'";octx.textAlign='center';
+    octx.fillText(p.name,lp[0],lp[1]);
+  });
+  // ウォーターマーク
+  octx.fillStyle='#2a2a2a';octx.font="14px 'Arial'";octx.textAlign='right';
+  octx.fillText('TrailerCAD Assembly',offW-20,offH-16);
+
+  const a=document.createElement('a');
+  a.download='TrailerCAD_'+Date.now()+'.png';
+  a.href=off.toDataURL('image/png');
+  a.click();
+  toast('📷 PNG保存しました（1920×1080）');
+}
+
+// ── 📦 JSONデータ保存 ─────────────────────────────────────────
+function saveJSON(){
+  if(!parts.length){toast('部材がありません');return;}
+  const data={
+    version:'1.0',
+    savedAt:new Date().toISOString(),
+    camera:{rx:+document.getElementById('rx').value,ry:+document.getElementById('ry').value,zoom:+document.getElementById('zoom').value},
+    parts:parts
+  };
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.download='TrailerCAD_'+Date.now()+'.json';
+  a.href=URL.createObjectURL(blob);
+  a.click();
+  toast('📦 データ保存しました');
+}
+
+// ── 📂 JSON読込 ───────────────────────────────────────────────
+function loadJSON(input){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      if(!data.parts||!Array.isArray(data.parts))throw new Error('invalid');
+      parts=data.parts;
+      uid=Math.max(0,...parts.map(p=>p.id||0));
+      selId=null;closeEdit();
+      if(data.camera){
+        document.getElementById('rx').value=data.camera.rx||20;
+        document.getElementById('ry').value=data.camera.ry||-38;
+        document.getElementById('zoom').value=data.camera.zoom||120;
+        rxv.textContent=Math.round(data.camera.rx||20)+'°';
+        ryv.textContent=Math.round(data.camera.ry||-38)+'°';
+        zv.textContent=Math.round(data.camera.zoom||120)+'%';
+      }
+      buildList();render();
+      toast('📂 データを読み込みました（'+parts.length+'個）');
+    }catch(err){toast('読込失敗: 正しいJSONファイルを選択してください');}
+  };
+  reader.readAsText(file);
+  input.value='';
+}
+
+// ── toast ─────────────────────────────────────────────────────
+function toast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// ── 3D Engine ─────────────────────────────────────────────────
+const c3=document.getElementById('c3');
+const ctx=c3.getContext('2d');
+function rsz(){const v=document.getElementById('v3');c3.width=v.clientWidth;c3.height=v.clientHeight;render();}
+c3.addEventListener('mousedown',e=>{drag3=true;lx3=e.clientX;ly3=e.clientY;c3.style.cursor='grabbing';});
+window.addEventListener('mouseup',()=>{drag3=false;c3.style.cursor='grab';});
+window.addEventListener('mousemove',e=>{
+  if(!drag3)return;
+  const dx=e.clientX-lx3,dy=e.clientY-ly3;lx3=e.clientX;ly3=e.clientY;
+  const ry=document.getElementById('ry'),rx=document.getElementById('rx');
+  ry.value=Math.max(-180,Math.min(180,+ry.value+dx*.45));
+  rx.value=Math.max(-180,Math.min(180,+rx.value+dy*.45));
+  ryv.textContent=Math.round(ry.value)+'°';rxv.textContent=Math.round(rx.value)+'°';
+  render();
+});
+c3.addEventListener('wheel',e=>{
+  e.preventDefault();
+  const z=document.getElementById('zoom'),cur=+z.value;
+  const step=cur<100?5:cur<300?20:cur<600?50:100;
+  z.value=Math.max(10,Math.min(1000,cur+(e.deltaY<0?step:-step)));
+  zv.textContent=Math.round(z.value)+'%';render();
+},{passive:false});
+function resetCam(){document.getElementById('rx').value=20;document.getElementById('ry').value=-38;document.getElementById('zoom').value=120;rxv.textContent='20°';ryv.textContent='-38°';zv.textContent='120%';render();}
+
+function prj(pt,RX,RY,sc,CX,CY){
+  let[x,y,z]=pt;
+  const x1=x*Math.cos(RY)-z*Math.sin(RY),z1=x*Math.sin(RY)+z*Math.cos(RY);
+  const y2=y*Math.cos(RX)-z1*Math.sin(RX),z2=y*Math.sin(RX)+z1*Math.cos(RX);
+  const s=sc*55/(z2*.04+4);
+  return[CX+x1*s,CY-y2*s,z2];
+}
+function dk(hex,f,sel){
+  const h=(hex||'#888').replace('#','');
+  const p2=h.length===3?h.split('').map(c=>c+c).join(''):h.padEnd(6,'0');
+  let r=parseInt(p2.slice(0,2),16)||0,g=parseInt(p2.slice(2,4),16)||0,b=parseInt(p2.slice(4,6),16)||0;
+  if(sel){r=Math.min(255,Math.round(r*f)+50);g=Math.max(0,Math.round(g*f)-20);b=Math.max(0,Math.round(b*f)-20);}
+  else{r=Math.min(255,Math.round(r*f));g=Math.min(255,Math.round(g*f));b=Math.min(255,Math.round(b*f));}
+  return`rgb(${r},${g},${b})`;
+}
+
+function buildFaces(p){
+  const faces=[];
+  const ox=p.ox*S,oy=p.oy*S,oz=p.oz*S;
+  const col=p.color||'#888';const isSel=p.id===selId;
+  function af(pts,br){faces.push({pts,col,br,sel:isSel});}
+  function box(x0,y0,z0,x1,y1,z1){
+    const v=[[x0+ox,y0+oy,z0+oz],[x1+ox,y0+oy,z0+oz],[x1+ox,y1+oy,z0+oz],[x0+ox,y1+oy,z0+oz],[x0+ox,y0+oy,z1+oz],[x1+ox,y0+oy,z1+oz],[x1+ox,y1+oy,z1+oz],[x0+ox,y1+oy,z1+oz]];
+    af([v[0],v[1],v[2],v[3]],1.00);af([v[5],v[4],v[7],v[6]],.42);
+    af([v[4],v[0],v[3],v[7]],.70);af([v[1],v[5],v[6],v[2]],.55);
+    af([v[3],v[2],v[6],v[7]],1.30);af([v[4],v[5],v[1],v[0]],.32);
+  }
+  if(p.type==='arch'){
+    const R=p.R*S,D=p.D*S,T=p.T*S;const Ro=R,Ri=R-T,zF=-D/2,zBk=D/2;const STEPS=40;
+    for(let i=0;i<STEPS;i++){
+      const a1=Math.PI*i/STEPS,a2=Math.PI*(i+1)/STEPS;
+      const oF1=[Math.cos(a1)*Ro+ox,Math.sin(a1)*Ro+oy,zF+oz],oF2=[Math.cos(a2)*Ro+ox,Math.sin(a2)*Ro+oy,zF+oz];
+      const oB1=[Math.cos(a1)*Ro+ox,Math.sin(a1)*Ro+oy,zBk+oz],oB2=[Math.cos(a2)*Ro+ox,Math.sin(a2)*Ro+oy,zBk+oz];
+      const iF1=[Math.cos(a1)*Ri+ox,Math.sin(a1)*Ri+oy,zF+oz],iF2=[Math.cos(a2)*Ri+ox,Math.sin(a2)*Ri+oy,zF+oz];
+      const iB1=[Math.cos(a1)*Ri+ox,Math.sin(a1)*Ri+oy,zBk+oz],iB2=[Math.cos(a2)*Ri+ox,Math.sin(a2)*Ri+oy,zBk+oz];
+      af([oF1,oF2,iF2,iF1],1.00);af([oB2,oB1,iB1,iB2],.40);
+      af([oF2,oF1,oB1,oB2],.72);af([iF1,iF2,iB2,iB1],.50);
+      af([oF1,oF2,oB2,oB1],1.25);af([iF2,iF1,iB1,iB2],.30);
+    }
+  }else if(p.type==='box'){
+    const W=p.W*S,H=p.H*S,D=p.D*S;box(-W/2,-H/2,-D/2,W/2,H/2,D/2);
+  }else{
+    const R=p.R*S,H=p.H*S,D=p.D*S;const STEPS=24;
+    for(let i=0;i<STEPS;i++){
+      const a1=2*Math.PI*i/STEPS,a2=2*Math.PI*(i+1)/STEPS;
+      af([[Math.cos(a1)*R+ox,-H/2+oy,Math.sin(a1)*D+oz],[Math.cos(a2)*R+ox,-H/2+oy,Math.sin(a2)*D+oz],[Math.cos(a2)*R+ox,H/2+oy,Math.sin(a2)*D+oz],[Math.cos(a1)*R+ox,H/2+oy,Math.sin(a1)*D+oz]],0.6+0.5*Math.cos(a1));
+    }
+    af(Array.from({length:24},(_,i)=>[Math.cos(2*Math.PI*i/24)*R+ox,H/2+oy,Math.sin(2*Math.PI*i/24)*D+oz]),1.3);
+    af(Array.from({length:24},(_,i)=>[Math.cos(2*Math.PI*i/24)*R+ox,-H/2+oy,Math.sin(2*Math.PI*i/24)*D+oz]),.32);
+  }
+  return faces;
+}
+
+function render(){
+  const W=c3.width,H=c3.height;
+  ctx.fillStyle='#0d0d0d';ctx.fillRect(0,0,W,H);
+  if(!parts.length)return;
+  const RX=+document.getElementById('rx').value*Math.PI/180;
+  const RY=+document.getElementById('ry').value*Math.PI/180;
+  const sc=+document.getElementById('zoom').value/100;
+  const CX=W/2,CY=H/2;
+  const pj=pt=>prj(pt,RX,RY,sc,CX,CY);
+  let all=[];parts.forEach(p=>all.push(...buildFaces(p)));
+  all.sort((a,b)=>b.pts.reduce((s,pt)=>s+pj(pt)[2],0)/b.pts.length-a.pts.reduce((s,pt)=>s+pj(pt)[2],0)/a.pts.length);
+  all.forEach(f=>{
+    ctx.beginPath();const p0=pj(f.pts[0]);ctx.moveTo(p0[0],p0[1]);
+    f.pts.slice(1).forEach(pt=>{const p=pj(pt);ctx.lineTo(p[0],p[1]);});
+    ctx.closePath();ctx.fillStyle=dk(f.col,f.br,f.sel);ctx.fill();
+    ctx.strokeStyle=f.sel?'rgba(255,60,60,.5)':'rgba(0,0,0,.22)';ctx.lineWidth=f.sel?.7:.3;ctx.stroke();
+  });
+  parts.forEach((p,i)=>{
+    const lp=pj([p.ox*S,(p.oy+(p.H||p.R*2||50))*S*0.6+0.3,p.oz*S]);
+    ctx.fillStyle=p.id===selId?'#ff4444':DOTS[i%DOTS.length]+'99';
+    ctx.font=(p.id===selId?'bold ':'')+"10px 'Barlow Condensed'";ctx.textAlign='center';
+    ctx.fillText(p.name,lp[0],lp[1]);
+  });
+}
+
+window.addEventListener('resize',rsz);
+rsz();
+</script>
