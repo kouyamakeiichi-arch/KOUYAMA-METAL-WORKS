@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ステンレス製 トレーラー用丸型フェンダー部材</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin:0; padding:16px; background:#f5f5f5; }
+    .product-page { max-width:900px; margin:0 auto; padding:16px; background:#fff; box-sizing:border-box; }
+    .product-header { text-align:center; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:8px; }
+    .product-header h1 { font-size:1.6rem; margin:0 0 4px; }
+    .product-header .catch { font-size:0.95rem; color:#666; margin:0; }
+    .slider { position:relative; margin:12px auto 16px; max-width:720px; }
+    .slider img { width:100%; border-radius:8px; display:none; }
+    .slider img.active { display:block; }
+    .slider-nav { text-align:center; margin-top:6px; font-size:0.8rem; color:#555; }
+    .slider-nav button { margin:0 4px; padding:3px 8px; font-size:0.8rem; }
+    .section-title { font-size:1.1rem; margin:20px 0 8px; border-left:4px solid #333; padding-left:8px; }
+    .features-view { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+    .feature-card-view { background:#fafafa; border-radius:8px; border:1px solid #eee; padding:10px; font-size:0.9rem; }
+    .feature-card-view h3 { margin:0 0 4px; font-size:1rem; }
+    .feature-card-view p { margin:0; color:#555; }
+    table.spec-view { width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:6px; }
+    table.spec-view th, table.spec-view td { border:1px solid #ddd; padding:6px 8px; text-align:left; }
+    table.spec-view th { width:30%; background:#fafafa; }
+    .custom-view ul { margin:4px 0 0; padding-left:18px; font-size:0.9rem; }
+    .custom-view li { margin-bottom:3px; }
+    .footer-view { margin-top:20px; padding-top:10px; border-top:1px solid #eee; font-size:0.85rem; color:#666; }
+    .footer-view .brand { font-weight:600; }
+
+    /* 図面ビューワー */
+    .cad-section { margin-top:20px; }
+    .cad-toolbar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+    .cad-load-btn { display:inline-flex; align-items:center; gap:6px; background:#1a2535; color:#fff; border:none; border-radius:5px; padding:7px 16px; font-size:0.85rem; font-weight:700; cursor:pointer; transition:background .15s; }
+    .cad-load-btn:hover { background:#2e3d4f; }
+    .cad-open-btn { display:inline-flex; align-items:center; gap:6px; background:#fff; color:#c94a0a; border:2px solid #c94a0a; border-radius:5px; padding:6px 14px; font-size:0.85rem; font-weight:700; cursor:pointer; transition:all .15s; text-decoration:none; }
+    .cad-open-btn:hover { background:#fff3e8; }
+    .cad-info { font-size:0.78rem; color:#888; }
+    .cad-viewer { background:#1e2535; border-radius:8px; overflow:hidden; position:relative; border:1px solid #333; display:none; }
+    .cad-viewer.show { display:block; }
+    .cad-canvas-wrap { position:relative; width:100%; }
+    .cad-canvas-wrap svg { display:block; width:100%; height:auto; }
+    .cad-viewer-bar { background:#161e2e; padding:6px 12px; display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; }
+    .cad-viewer-bar span { font-size:0.75rem; color:#8a9ab0; font-family:monospace; }
+    .cad-zoom-row { display:flex; gap:4px; align-items:center; }
+    .cad-zb { width:26px; height:26px; background:#2e3d4f; border:1px solid #445; color:#ccc; border-radius:3px; cursor:pointer; font-size:14px; font-weight:700; display:flex; align-items:center; justify-content:center; user-select:none; }
+    .cad-zb:hover { background:#3e5060; color:#fff; }
+    .cad-layer-list { padding:8px 12px; display:flex; gap:8px; flex-wrap:wrap; border-top:1px solid #2a3545; }
+    .cad-layer-chip { display:flex; align-items:center; gap:4px; font-size:0.72rem; color:#8a9ab0; cursor:pointer; user-select:none; }
+    .cad-layer-chip input { accent-color:#c94a0a; width:12px; height:12px; cursor:pointer; }
+    .cad-layer-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .cad-empty { padding:3rem; text-align:center; color:#8a9ab0; font-size:0.9rem; }
+    .cad-empty span { font-size:2.5rem; display:block; margin-bottom:.5rem; }
+  </style>
+</head>
+<body>
+  <div class="product-page">
+<div class="product-header">
+  <h1>ステンレス製 トレーラー用丸型フェンダー部材</h1>
+  <p class="catch">高耐久 × 高意匠性の次世代ステンレスパーツ</p>
+</div>
+
+<div class="slider"><img src="images/車外側.jpg" alt="ステンレス製 トレーラー用丸型フェンダー部材 画像1" class="active"><img src="images/車内側.jpg" alt="ステンレス製 トレーラー用丸型フェンダー部材 画像2" class="">
+  <div class="slider-nav">
+    <button type="button" onclick="sliderPrev()">前へ</button>
+    <button type="button" onclick="sliderNext()">次へ</button>
+    <span>2枚</span>
+  </div>
+</div>
+
+<h2 class="section-title">製品の特徴</h2>
+<div class="features-view">
+  <div class="feature-card-view">
+    <h3>鏡面ステンレス仕上げ</h3>
+    <p>高級感のある外観と優れた耐候性を両立します。</p>
+  </div>
+  <div class="feature-card-view">
+    <h3>シンプル構造</h3>
+    <p>無駄のない設計により、メンテナンス性を向上させています。</p>
+  </div>
+  <div class="feature-card-view">
+    <h3>高剛性設計</h3>
+    <p>実用性を重視した堅牢な構造で、長期使用にも安心です。</p>
+  </div>
+  <div class="feature-card-view">
+    <h3>カスタム対応可能</h3>
+    <p>サイズ・形状の調整など、用途に合わせた柔軟なカスタムが可能です。</p>
+  </div>
+</div>
+
+<h2 class="section-title">仕様</h2>
+
+<table class="spec-view">
+  <tbody><tr><th>材質</th><td>ステンレス（SUS系）t2.0m㍉</td></tr>
+  <tr><th>表面仕上げ</th><td>鏡面仕上げ（#400相当）</td></tr>
+  <tr><th>用途</th><td>大型・中型トレーラー用</td></tr>
+  <tr><th>特徴</th><td>高耐久・高意匠性・メンテナンス性</td></tr>
+</tbody></table>
+
+<h2 class="section-title">カスタムオーダー</h2>
+<div class="custom-view"><ul><li>寸法変更</li><li>開口部形状の変更</li><li>追加ブラケットの設計・製作</li><li>特殊仕上げ（ヘアライン・バイブレーションなど）</li></ul></div>
+
+<h2 class="section-title">図面データ</h2>
+<div class="cad-section">
+  <div class="cad-toolbar">
+    <label class="cad-load-btn">
+      <input type="file" id="cad-file-input" accept=".json" style="display:none" onchange="cadLoadJson(this)">
+      📂 図面JSONを読み込む
+    </label>
+    <a id="cad-open-link" class="cad-open-btn" href="trailer_cad_v24.html" target="_blank">🔧 CADで開く</a>
+    <span class="cad-info" id="cad-file-name">JSONファイルを選択すると図面が表示されます</span>
+  </div>
+  <div class="cad-viewer" id="cad-viewer">
+    <div class="cad-viewer-bar">
+      <span id="cad-stat">—</span>
+      <div class="cad-zoom-row">
+        <div class="cad-zb" onclick="cadZoom(1.25)">＋</div>
+        <div class="cad-zb" onclick="cadZoom(0.8)">－</div>
+        <div class="cad-zb" onclick="cadFit()" title="全体表示">⊞</div>
+      </div>
+    </div>
+    <div class="cad-canvas-wrap" id="cad-canvas-wrap">
+      <div class="cad-empty"><span>📐</span>図面データなし</div>
+    </div>
+    <div class="cad-layer-list" id="cad-layer-list"></div>
+  </div>
+</div>
+
+<div class="footer-view">
+  <div class="brand">kouyama METAL WORKS</div>
+  <div>High Quality Stainless Products</div>
+  <div style="margin-top:4px;">お問い合わせ・お見積りはお気軽にご相談ください。</div>
+</div>
+  </div>
+  <script>
+    (function(){
+      var idx = 0;
+      var imgs = document.querySelectorAll('.slider img');
+      function show(i){
+        if(!imgs.length) return;
+        idx = (i + imgs.length) % imgs.length;
+        imgs.forEach(function(img, n){
+          img.classList.toggle('active', n === idx);
+        });
+      }
+      window.sliderPrev = function(){ show(idx - 1); };
+      window.sliderNext = function(){ show(idx + 1); };
+      show(0);
+    })();
+
+    // ─── 図面JSONビューワー ───────────────────
+    var _cadData = null;
+    var _cadZoomScale = 1;
+    var _cadLayerVis = {};
+    var _cadBBox = null;
+
+    function cadLoadJson(input) {
+      var file = input.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          var data = JSON.parse(e.target.result);
+          _cadData = data;
+          // レイヤー可視状態を初期化
+          _cadLayerVis = {};
+          (data.layers || []).forEach(function(l) {
+            _cadLayerVis[l.id] = l.visible !== false;
+          });
+          _cadZoomScale = 1;
+          document.getElementById('cad-file-name').textContent = '📄 ' + file.name + '　（要素数：' + (data.ents || []).length + '）';
+          document.getElementById('cad-viewer').classList.add('show');
+          cadRenderLayers(data.layers || []);
+          cadFit();
+        } catch(err) {
+          alert('JSONの読み込みに失敗しました。\n' + err.message);
+        }
+      };
+      reader.readAsText(file, 'UTF-8');
+    }
+
+    function cadRenderLayers(layers) {
+      var el = document.getElementById('cad-layer-list');
+      el.innerHTML = layers.map(function(l) {
+        return '<label class="cad-layer-chip">' +
+          '<input type="checkbox"' + (_cadLayerVis[l.id] ? ' checked' : '') + ' onchange="cadToggleLayer(\'' + l.id + '\',this.checked)">' +
+          '<span class="cad-layer-dot" style="background:' + l.color + '"></span>' +
+          l.name + '</label>';
+      }).join('');
+    }
+
+    function cadToggleLayer(id, vis) {
+      _cadLayerVis[id] = vis;
+      cadRedraw();
+    }
+
+    function cadGetBBox(ents) {
+      var xs = [], ys = [];
+      (ents || []).forEach(function(e) {
+        if (e.type === 'poly' && e.pts) {
+          e.pts.forEach(function(p) { xs.push(p[0]); ys.push(p[1]); });
+        } else if (e.type === 'line' || e.type === 'cline') {
+          xs.push(e.x1, e.x2); ys.push(e.y1, e.y2);
+        } else if (e.type === 'rect') {
+          xs.push(e.x1, e.x2); ys.push(e.y1, e.y2);
+        } else if (e.type === 'circ') {
+          xs.push(e.cx - e.r, e.cx + e.r); ys.push(e.cy - e.r, e.cy + e.r);
+        }
+      });
+      if (!xs.length) return { x: -200, y: -400, w: 1400, h: 900 };
+      var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
+      var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+      var pad = Math.max((maxX - minX), (maxY - minY)) * 0.08 + 20;
+      return { x: minX - pad, y: minY - pad, w: (maxX - minX) + pad * 2, h: (maxY - minY) + pad * 2 };
+    }
+
+    function cadBuildSvgPaths(ents, layers) {
+      var layerColor = {};
+      (layers || []).forEach(function(l) { layerColor[l.id] = l.color || '#1a5a9a'; });
+
+      return (ents || []).filter(function(e) {
+        return _cadLayerVis[e.layer] !== false;
+      }).map(function(e) {
+        var col = layerColor[e.layer] || '#1a5a9a';
+        if (e.type === 'poly' && e.pts && e.pts.length >= 2) {
+          var d = e.pts.map(function(p, i) {
+            return (i === 0 ? 'M' : 'L') + p[0].toFixed(2) + ',' + (-p[1]).toFixed(2);
+          }).join(' ') + ' Z';
+          return '<path d="' + d + '" stroke="' + col + '" stroke-width="1.5" fill="none" vector-effect="non-scaling-stroke"/>';
+        } else if ((e.type === 'line' || e.type === 'cline') && e.x1 !== undefined) {
+          return '<line x1="' + e.x1 + '" y1="' + (-e.y1) + '" x2="' + e.x2 + '" y2="' + (-e.y2) + '" stroke="' + col + '" stroke-width="1.5" vector-effect="non-scaling-stroke"/>';
+        } else if (e.type === 'circ' && e.cx !== undefined) {
+          return '<circle cx="' + e.cx + '" cy="' + (-e.cy) + '" r="' + e.r + '" stroke="' + col + '" stroke-width="1.5" fill="none" vector-effect="non-scaling-stroke"/>';
+        }
+        return '';
+      }).join('\n');
+    }
+
+    function cadFit() {
+      if (!_cadData) return;
+      _cadZoomScale = 1;
+      _cadBBox = cadGetBBox(_cadData.ents);
+      cadRedraw();
+    }
+
+    function cadZoom(factor) {
+      _cadZoomScale *= factor;
+      cadRedraw();
+    }
+
+    function cadRedraw() {
+      if (!_cadData) return;
+      var bb = _cadBBox || cadGetBBox(_cadData.ents);
+      var zw = bb.w / _cadZoomScale;
+      var zh = bb.h / _cadZoomScale;
+      var cx = bb.x + bb.w / 2;
+      var cy = -(bb.y + bb.h / 2);
+      var vb = (cx - zw/2).toFixed(1) + ' ' + (cy - zh/2).toFixed(1) + ' ' + zw.toFixed(1) + ' ' + zh.toFixed(1);
+      var svgH = Math.min(520, Math.max(260, Math.round(zh / zw * 860)));
+
+      var paths = cadBuildSvgPaths(_cadData.ents, _cadData.layers);
+
+      // 基準線
+      var bls = '';
+      (_cadData.bls || []).forEach(function(bl) {
+        if (bl.dir === 'x') {
+          bls += '<line x1="' + (cx - zw) + '" y1="' + (-bl.y) + '" x2="' + (cx + zw) + '" y2="' + (-bl.y) + '" stroke="#cc0000" stroke-width="0.8" stroke-dasharray="6,4" opacity="0.6" vector-effect="non-scaling-stroke"/>';
+        } else {
+          bls += '<line x1="' + bl.x + '" y1="' + (cy - zh) + '" x2="' + bl.x + '" y2="' + (cy + zh) + '" stroke="#cc0000" stroke-width="0.8" stroke-dasharray="6,4" opacity="0.6" vector-effect="non-scaling-stroke"/>';
+        }
+      });
+
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + vb + '" style="width:100%;height:' + svgH + 'px;background:#1e2535;cursor:grab">' +
+        '<rect x="' + (cx-zw/2) + '" y="' + (cy-zh/2) + '" width="' + zw + '" height="' + zh + '" fill="#1e2535"/>' +
+        bls + paths + '</svg>';
+
+      document.getElementById('cad-canvas-wrap').innerHTML = svg;
+
+      var vc = (_cadData.ents || []).filter(function(e){ return _cadLayerVis[e.layer] !== false; }).length;
+      document.getElementById('cad-stat').textContent =
+        '表示中：' + vc + '要素　ズーム：' + Math.round(100/_cadZoomScale) + '%　範囲：' + Math.round(bb.w) + ' × ' + Math.round(bb.h) + ' mm';
+    }
+  
+  </script>
+</body>
+</html>
